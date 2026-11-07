@@ -2,7 +2,7 @@ package net.naw.scrollwalk.mixin;
 
 import net.naw.scrollwalk.ScrollWalk;
 import net.minecraft.client.MouseHandler;
-import org.lwjgl.glfw.GLFW;
+import com.mojang.blaze3d.platform.InputConstants;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,9 +24,9 @@ public class MouseMixin {
             return;
         }
 
-        // 2. Check if Alt is held using GLFW (Matches your old project)
-        boolean isAltDown = GLFW.glfwGetKey(handle, GLFW.GLFW_KEY_LEFT_ALT) == GLFW.GLFW_PRESS ||
-                GLFW.glfwGetKey(handle, GLFW.GLFW_KEY_RIGHT_ALT) == GLFW.GLFW_PRESS;
+        // 2. Check if Alt is held (26.3+ uses SDL instead of GLFW, so ask Minecraft's own input layer)
+        boolean isAltDown = InputConstants.isKeyDown(InputConstants.KEY_LALT) ||
+                InputConstants.isKeyDown(InputConstants.KEY_RALT);
 
         // Only process scroll if Alt is being held
         if (isAltDown) {
