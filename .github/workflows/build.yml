@@ -4,7 +4,6 @@ name: Build 1.21.1 (Fabric)
 on:
   push:
     branches: [port-1.21.1]
-    tags: ['*+1.21.1-hiveko.*']
   workflow_dispatch:
 
 permissions:
@@ -37,12 +36,15 @@ jobs:
           name: scrollwalk-1.21.1-fabric
           path: build/libs/*.jar
 
-      # Pushing a tag like 1.2+1.21.1-hiveko.1 also publishes the jar as a release of this fork.
+      # Publishes the jar as a release of this fork, tagged with hiveko_release from
+      # gradle.properties, unless that release already exists (change the value to publish again).
       - name: Release
-        if: startsWith(github.ref, 'refs/tags/')
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          TAG=$(grep '^hiveko_release=' gradle.properties | cut -d= -f2)
+          [ -n "$TAG" ] || exit 0
+          if gh release view "$TAG" >/dev/null 2>&1; then echo "release $TAG exists"; exit 0; fi
           JAR=$(ls build/libs/*.jar | grep -v sources)
-          gh release create "$GITHUB_REF_NAME" $JAR --title "Scroll Walk $GITHUB_REF_NAME" \
+          gh release create "$TAG" $JAR --target "$GITHUB_SHA" --title "Scroll Walk $TAG" \
             --notes "Unofficial port of [Scroll Walk](https://modrinth.com/mod/scroll-walk) 1.2 by Naw7k (MIT) to Minecraft 1.21 - 1.21.1 (Fabric). Requires Fabric API, Cloth Config and Mod Menu."
