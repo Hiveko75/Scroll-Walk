@@ -83,11 +83,11 @@ public class PlayerEntityMixin {
             // Display multiplier is currentSpeed * 10 so 0.1 shows as 1.0x, 0.05 shows as 0.5x etc
             double displayMultiplier = ScrollWalk.currentSpeed * 10;
             String content = String.format("Speed: %.1fx | %.1f km/h (%s)", displayMultiplier, smoothKmh, state);
-            player.sendOverlayMessage(Component.literal(content).withStyle(style -> style.withColor(finalColor)));
+            player.displayClientMessage(Component.literal(content).withStyle(style -> style.withColor(finalColor)), true);
             lastWasVisible = true;
         } else if (lastWasVisible) {
             // Clear the action bar message when speedometer is turned off
-            player.sendOverlayMessage(Component.literal(""));
+            player.displayClientMessage(Component.literal(""), true);
             lastWasVisible = false;
         }
     }

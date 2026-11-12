@@ -24,9 +24,9 @@ public class MouseMixin {
             return;
         }
 
-        // 2. Check if Alt is held (26.3+ uses SDL instead of GLFW, so ask Minecraft's own input layer)
-        boolean isAltDown = InputConstants.isKeyDown(InputConstants.KEY_LALT) ||
-                InputConstants.isKeyDown(InputConstants.KEY_RALT);
+        // 2. Check if Alt is held (1.21.1: the key state is read from the window the scroll came from)
+        boolean isAltDown = InputConstants.isKeyDown(handle, InputConstants.KEY_LALT) ||
+                InputConstants.isKeyDown(handle, InputConstants.KEY_RALT);
 
         // Only process scroll if Alt is being held
         if (isAltDown) {
