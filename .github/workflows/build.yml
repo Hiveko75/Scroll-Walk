@@ -47,4 +47,4 @@ jobs:
           if gh release view "$TAG" >/dev/null 2>&1; then echo "release $TAG exists"; exit 0; fi
           JAR=$(ls build/libs/*.jar | grep -v sources)
           gh release create "$TAG" $JAR --target "$GITHUB_SHA" --title "Scroll Walk $TAG" \
-            --notes "Unofficial port of [Scroll Walk](https://modrinth.com/mod/scroll-walk) 1.2 by Naw7k (MIT) to Minecraft 1.21 - 1.21.1 (Fabric). Requires Fabric API, Cloth Config and Mod Menu."
+            --notes "Unofficial port of [Scroll Walk](https://modrinth.com/mod/scroll-walk) 1.2 by Naw7k (MIT) to Minecraft 1.21 - 1.21.1 (Fabric). While flying, Alt + scroll is left to fly speed mods such as Creative Fly. Requires Fabric API, Cloth Config and Mod Menu."
