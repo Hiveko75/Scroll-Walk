@@ -24,6 +24,13 @@ public class MouseMixin {
             return;
         }
 
+        // While flying, leave Alt + scroll to the fly speed mods (Creative Fly changes the fly speed
+        // through the hotbar scroll); walking speed does not matter in the air
+        var player = net.minecraft.client.MinecraftClient.getInstance().player;
+        if (player != null && player.getAbilities().flying) {
+            return;
+        }
+
         // 2. Check if Alt is held using GLFW (Matches your old project)
         boolean isAltDown = GLFW.glfwGetKey(window, GLFW.GLFW_KEY_LEFT_ALT) == GLFW.GLFW_PRESS ||
                 GLFW.glfwGetKey(window, GLFW.GLFW_KEY_RIGHT_ALT) == GLFW.GLFW_PRESS;
