@@ -1,9 +1,8 @@
-# Builds the Minecraft 26.3 (Fabric) jar on every push to port-26.3 (or manually from the Actions tab).
+# Builds the Minecraft 26.3 (Fabric) jar when started by hand from the Actions tab.
 name: Build 26.3 (Fabric)
 
+# Started by hand only (Actions -> Run workflow): no builds on push or pull requests.
 on:
-  push:
-    branches: [port-26.3]
   workflow_dispatch:
 
 permissions:
