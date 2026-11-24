@@ -35,3 +35,4 @@ jobs:
         with:
           name: scrollwalk-26.3-fabric
           path: build/libs/*.jar
+          retention-days: 14
