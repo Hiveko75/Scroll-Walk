@@ -4,7 +4,10 @@
 - Minecraft 26.3, Fabric Loader, Fabric API
 - Cloth Config (26.3) and Mod Menu (26.3)
 
-### Changes since 1.2+26.3-hiveko.1
+### Changes since 1.2+26.3-hiveko.2
+- The walking speed key is **Caps Lock** by default (was Left Alt, which clashes with other mods that use Alt). A key you already set stays as it is.
+
+### Changes in 1.2+26.3-hiveko.2
 - The walking speed key is a normal key binding: **Walking speed (hold + mouse wheel)** in Options → Controls → Key Binds (category Scroll Walk), Caps Lock by default. The original reads Left and Right Alt directly, which cannot be changed and clashes with other mods that use Alt. A mouse button works too.
 - English and Hungarian names for the key binding.
 
