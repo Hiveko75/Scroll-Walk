@@ -1,8 +1,8 @@
 package net.naw.scrollwalk.mixin;
 
 import net.naw.scrollwalk.ScrollWalk;
+import net.naw.scrollwalk.ScrollWalkClient;
 import net.minecraft.client.MouseHandler;
-import com.mojang.blaze3d.platform.InputConstants;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -31,12 +31,12 @@ public class MouseMixin {
             return;
         }
 
-        // 2. Check if Alt is held (1.21.1: the key state is read from the window the scroll came from)
-        boolean isAltDown = InputConstants.isKeyDown(handle, InputConstants.KEY_LALT) ||
-                InputConstants.isKeyDown(handle, InputConstants.KEY_RALT);
+        // 2. Check if the walking speed key is held ([Hiveko port] a key binding, Left Alt by default;
+        // 1.21.1: the key state is read from the window the scroll came from)
+        boolean isSpeedKeyDown = ScrollWalkClient.isSpeedKeyDown(handle);
 
-        // Only process scroll if Alt is being held
-        if (isAltDown) {
+        // Only process scroll if the walking speed key is being held
+        if (isSpeedKeyDown) {
             double step = ScrollWalk.config.scrollStep;
             double max = ScrollWalk.config.maxSpeed;
             double min = ScrollWalk.config.minSpeed;
