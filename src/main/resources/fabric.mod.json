@@ -3,7 +3,7 @@
   "id": "scrollwalk",
   "version": "${version}",
   "name": "ScrollWalk",
-  "description": "Hold Alt and Scroll to dynamically adjust your movement speed.",
+  "description": "Hold the walking speed key (Left Alt by default, changeable in Key Binds) and scroll to dynamically adjust your movement speed.",
   "authors": [
   ],
   "contact": {
@@ -16,6 +16,9 @@
   "entrypoints": {
     "main": [
       "net.naw.scrollwalk.ScrollWalk"
+    ],
+    "client": [
+      "net.naw.scrollwalk.ScrollWalkClient"
     ],
     "modmenu": [
       "net.naw.scrollwalk.ModMenuIntegration"
