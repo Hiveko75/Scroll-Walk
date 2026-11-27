@@ -1,8 +1,8 @@
 package net.naw.scrollwalk.mixin;
 
 import net.naw.scrollwalk.ScrollWalk;
+import net.naw.scrollwalk.ScrollWalkClient;
 import net.minecraft.client.Mouse;
-import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -31,12 +31,12 @@ public class MouseMixin {
             return;
         }
 
-        // 2. Check if Alt is held using GLFW (Matches your old project)
-        boolean isAltDown = GLFW.glfwGetKey(window, GLFW.GLFW_KEY_LEFT_ALT) == GLFW.GLFW_PRESS ||
-                GLFW.glfwGetKey(window, GLFW.GLFW_KEY_RIGHT_ALT) == GLFW.GLFW_PRESS;
+        // 2. Check if the walking speed key is held ([Hiveko port] a key binding, Left Alt by default,
+        // read from the window the scroll came from)
+        boolean isSpeedKeyDown = ScrollWalkClient.isSpeedKeyDown(window);
 
-        // Only process scroll if Alt is being held
-        if (isAltDown) {
+        // Only process scroll if the walking speed key is being held
+        if (isSpeedKeyDown) {
             double step = ScrollWalk.config.scrollStep;
             double max = ScrollWalk.config.maxSpeed;
             double min = ScrollWalk.config.minSpeed;
