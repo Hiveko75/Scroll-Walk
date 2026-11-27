@@ -24,7 +24,7 @@ public class MouseMixin {
             return;
         }
 
-        // 2. Check if the walking speed key is held ([Hiveko port] a key binding, Left Alt by default)
+        // 2. Check if the walking speed key is held ([Hiveko port] a key binding, Caps Lock by default)
         boolean isSpeedKeyDown = ScrollWalkClient.isSpeedKeyDown();
 
         // Only process scroll if the walking speed key is being held

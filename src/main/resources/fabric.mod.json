@@ -3,7 +3,7 @@
   "id": "scrollwalk",
   "version": "${version}",
   "name": "ScrollWalk",
-  "description": "Hold the walking speed key (Left Alt by default, changeable in Key Binds) and scroll to dynamically adjust your movement speed.",
+  "description": "Hold the walking speed key (Caps Lock by default, changeable in Key Binds) and scroll to dynamically adjust your movement speed.",
   "authors": [
   ],
   "contact": {
